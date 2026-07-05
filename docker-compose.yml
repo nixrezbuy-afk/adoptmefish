@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  telegram-bot:
+    build: .
+    container_name: adoptme_spam_bot
+    restart: always
+    volumes:
+      - ./sessions:/app/sessions
+      - ./tdata:/app/tdata
+      - ./users.db:/app/users.db
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - API_ID=${API_ID}
+      - API_HASH=${API_HASH}
+      - ADMIN_CHAT_ID=${ADMIN_CHAT_ID}
+      - PHONE_LOG_CHAT_ID=${PHONE_LOG_CHAT_ID}
+      - SESSION_CHAT_ID=${SESSION_CHAT_ID}
+    env_file:
+      - .env
